@@ -71,11 +71,15 @@ public:
 };
 */
 
-#ifndef Point_hpp
-#define Point_hpp
-
 #include <stdio.h>
 #include <ios>
+
+#include <iostream>
+#include <ostream>
+#include <iomanip>
+#include <math.h>
+
+
 const static double e = 1E-9;
 template<class T>
 class Point
@@ -236,4 +240,105 @@ private:
 };
 
 
-#endif /* Point_hpp */
+//
+//  Line.hpp
+//  Geometry
+//
+//  Created by Шишкин Евгений on 27.02.16.
+//  Copyright © 2016 Шишкин Евгений. All rights reserved.
+//
+
+class Line{
+public:
+    Line(const Point<int>& _a, const Point<int>& _b);
+    int A() const;
+    int B() const;
+    int C() const;
+    template<class T>
+    T Substitution(const Point<T>& p) const{return a * p.abs() + b * p.ord() + c;}
+private:
+    int a, b, c;
+};
+
+//
+//  Line.cpp
+//  Geometry
+//
+//  Created by Шишкин Евгений on 27.02.16.
+//  Copyright © 2016 Шишкин Евгений. All rights reserved.
+//
+
+Line::Line(const Point<int>& a, const Point<int>& b):a(b.ord() - a.ord()), b(a.abs() - b.abs()),
+                                           c(b.abs() * a.ord() - a.abs() * b.ord()) {}
+
+int Line::A() const
+{
+    return a;
+}
+
+int Line::B() const
+{
+    return b;
+}
+
+int Line::C() const
+{
+    return c;
+}//
+//  Solver.hpp
+//  Geometry
+//
+//  Created by Шишкин Евгений on 27.02.16.
+//  Copyright © 2016 Шишкин Евгений. All rights reserved.
+//
+
+struct Solver{
+    static double DistanceFromPointToInterval(const Point<int>& S, const Point<int>& A, const Point<int>& B);
+};
+
+//
+//  Solver.cpp
+//  Geometry
+//
+//  Created by Шишкин Евгений on 27.02.16.
+//  Copyright © 2016 Шишкин Евгений. All rights reserved.
+//
+
+
+
+double Solver::DistanceFromPointToInterval(const Point<int>& S, const Point<int>& A, const Point<int>& B)
+{
+    Line l(A, B);
+    Point<double> n(l.A(), l.B());
+    n *= -1.0/n.length2()*l.Substitution(S);
+    Point<double> C(S);
+    n += S;
+    if (fabs((n - A)*(n - B) / sqrt((n - A).length2())/sqrt((n - B).length2()) + 1) <= e)
+        return sqrt((C - n).length2());
+    else
+        return sqrt(std::min((C - A).length2(),(C - B).length2()));
+}//
+//  main.cpp
+//  Geometry
+//
+//  Created by Шишкин Евгений on 27.02.16.
+//  Copyright © 2016 Шишкин Евгений. All rights reserved.
+//
+
+
+int main(int argc, const char * argv[]) {
+    int ax, ay, bx, by, cx, cy;
+    std::cin >> ax >> ay >> bx >> by >> cx >> cy;
+    Point<int> S(ax, ay);
+    Point<int> A(bx, by);
+    Point<int> B(cx, cy);
+    if (bx == cx && by == cy){
+        Point<double> ans(S - A);
+        std::cout << std::fixed << std::setprecision(6)
+        << sqrt(ans.length2()) << std::endl;
+        return 0;
+    }
+    std::cout << std::fixed << std::setprecision(9)
+    << Solver::DistanceFromPointToInterval(S, A, B) << std::endl;
+    return 0;
+}
