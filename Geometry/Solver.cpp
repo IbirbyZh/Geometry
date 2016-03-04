@@ -7,6 +7,8 @@
 //
 
 #include <ratio>
+#include <iomanip>
+#include <iostream>
 #include <algorithm>
 #include <math.h>
 #include "Solver.hpp"
@@ -51,6 +53,53 @@ bool Solver::Intersect(const Point<int>& A,const Point<int>& B, const Point<int>
     }else{
         return (((C - A) % (B - A)) * ((B - A) % (D - A)) >= 0) &&
                (((A - C) % (D - C)) * ((D - C) % (B - C)) >= 0);
+    }
+    
+}
+
+void Solver::TwoCircle(const Point<long long>& O1, const long long R1, const Point<long long>& O2, const long long R2, bool ch){
+    int k = 0;
+    if (O1 == O2){
+        if (R1 == R2){
+            std::cout << "3\n";
+            return;
+        }else{
+            std::cout << "0\n";
+            return;
+        }
+    }
+    long long len = (O2 - O1).length2();
+    if(len == (R1 - R2) * (R1 - R2) || len == (R1 + R2) * (R1 + R2)){
+        k = 1;
+    }else{
+        k = 2;
+    }
+    if(len > (R1 + R2) * (R1 + R2) || len < (R2 - R1) * (R2 - R1)){
+        std::cout << "0\n";
+        return;
+    }
+    Point<double> OH = O2 - O1;
+    OH /= sqrt(OH.length2());
+    OH *= static_cast<double>(R1 * R1 - R2 * R2 + len) / (2 * sqrt(len));
+    Point<double> H = OH + O1;
+    if (k == 2){
+        Point<double> DH = O2 - O1;
+        DH.rotate();
+        DH /= sqrt(DH.length2());
+        DH *= sqrt(R1 * R1 - OH.length2());
+        Point<double> A = H + DH;
+        Point<double> B = H - DH;
+        std::cout << "2\n";
+        std::cout << std::fixed << std::setprecision(10)
+        << H.abs() << ' ' << H.ord() << '\n'
+        << ((ch) ? sqrt(len) - sqrt(OH.length2())*(OH * (O2 - O1) > 0 ? 1 : -1): sqrt(OH.length2())) << ' ' << sqrt(DH.length2()) << '\n'
+        << A.abs() << ' ' << A.ord() << '\n'
+        << B.abs() << ' ' << B.ord() << '\n';
+    }else{
+        std::cout << "1\n";
+        std::cout << std::fixed << std::setprecision(10)
+        << H.abs() << ' ' << H.ord() << '\n';
+        return;
     }
     
 }

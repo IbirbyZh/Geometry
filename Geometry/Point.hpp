@@ -152,6 +152,17 @@ public:
         return x * x + y * y;
     }
     
+    bool operator ==(const Point& p) const
+    {
+        return x == p.x && y == p.y;
+    }
+    
+    void rotate()
+    {
+        std::swap(x, y);
+        x *= -1;
+    }
+    
 private:
     value_type x, y;
 };
@@ -229,6 +240,12 @@ public:
     double length2() const
     {
         return x * x + y * y;
+    }
+    
+    void rotate()
+    {
+        std::swap(x, y);
+        x *= -1;
     }
     
 private:
