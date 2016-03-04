@@ -106,7 +106,7 @@ public:
         y += p.ord();
         return *this;
     }
-    template<class X> Point operator+(const Point<X>& p)
+    template<class X> Point operator+(const Point<X>& p) const
     {
         return Point(x + p.abs(), y + p.ord());
     }
@@ -115,15 +115,15 @@ public:
         x -= p.abs();
         y -= p.ord();
     }
-    template<class X> Point operator-(const Point<X>& p)
+    template<class X> Point operator-(const Point<X>& p) const
     {
         return Point(x - p.abs(), y - p.ord());
     }
-    template<class X> T operator*(const Point<X>& p)
+    template<class X> T operator*(const Point<X>& p) const
     {
         return x * p.abs() + y * p.ord();
     }
-    template<class X> T operator%(const Point<X>& p)
+    template<class X> T operator%(const Point<X>& p) const
     {
         if (x * p.ord() > y * p.abs()){
             return 1;
@@ -147,7 +147,7 @@ public:
         return *this;
     }
     
-    T length2()
+    T length2() const
     {
         return x * x + y * y;
     }
@@ -185,7 +185,7 @@ public:
         y += p.ord();
         return *this;
     }
-    template<class X> Point operator+(const Point<X>& p)
+    template<class X> Point operator+(const Point<X>& p) const
     {
         return Point(x + p.abs(), y + p.ord());
     }
@@ -194,15 +194,15 @@ public:
         x -= p.abs();
         y -= p.ord();
     }
-    template<class X> Point operator-(const Point<X>& p)
+    template<class X> Point operator-(const Point<X>& p) const
     {
         return Point(x - p.abs(), y - p.ord());
     }
-    template<class X> double operator*(const Point<X>& p)
+    template<class X> double operator*(const Point<X>& p) const
     {
         return x * p.abs() + y * p.ord();
     }
-    template<class X> int operator%(const Point<X>& p)
+    template<class X> int operator%(const Point<X>& p) const
     {
         if (x * p.ord() - y * p.abs() > e){
             return 1;
@@ -226,7 +226,7 @@ public:
         return *this;
     }
     
-    double length2()
+    double length2() const
     {
         return x * x + y * y;
     }
