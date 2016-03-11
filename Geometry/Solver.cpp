@@ -103,3 +103,36 @@ void Solver::TwoCircle(const Point<long long>& O1, const long long R1, const Poi
     }
     
 }
+
+
+void Solver::Tangent(const Point<long long>& O1, const long long R1, const Point<long long>& O2)
+{
+    if ((O2 - O1).length2() < R1 * R1){
+        std::cout << 0 <<'\n';
+        return;
+    }
+    if ((O2 - O1).length2() == R1 * R1){
+        std::cout << 1 <<'\n';
+        std::cout << std::fixed << std::setprecision(10)
+        <<O2.abs() << ' ' << O2.ord() << '\n';
+        return;
+    }
+    Point<double> OP(O1 - O2);
+    double l = sqrt(OP.length2());
+    double r = sqrt((l + R1) * (l - R1));
+    OP *= r * r / (l * l);
+    Point<double> P = OP + O2;
+    Point<double> D(OP);
+    D.rotate();
+    D /= sqrt(D.length2());
+    D *= sqrt(r * r - OP.length2());
+    Point<double> A = (P + D);
+    Point<double> B = (P - D);
+    std::cout << "2\n";
+    std::cout << std::fixed << std::setprecision(10)
+    << P.abs() << ' ' << P.ord() << '\n'
+    << sqrt(OP.length2())<< ' ' << sqrt(D.length2()) << '\n'
+    << A.abs() << ' ' << A.ord() << '\n'
+    << B.abs() << ' ' << B.ord() << '\n';
+    
+}

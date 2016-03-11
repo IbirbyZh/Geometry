@@ -25,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A0041F351C8F1B23006A16B0 /* hull.in */ = {isa = PBXFileReference; lastKnownFileType = text; name = hull.in; path = "../../../Library/Developer/Xcode/DerivedData/Geometry-dwmvtwlkxabfxjgeejxhufseyeuf/Build/Products/Debug/hull.in"; sourceTree = "<group>"; };
+		A0041F361C8F1B23006A16B0 /* hull.out */ = {isa = PBXFileReference; lastKnownFileType = text; name = hull.out; path = "../../../Library/Developer/Xcode/DerivedData/Geometry-dwmvtwlkxabfxjgeejxhufseyeuf/Build/Products/Debug/hull.out"; sourceTree = "<group>"; };
 		A0730CAD1C82021900FBB7C5 /* Geometry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Geometry; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0730CB01C82021900FBB7C5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A0730CB81C8202AF00FBB7C5 /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 			children = (
 				A0730CAF1C82021900FBB7C5 /* Geometry */,
 				A0730CAE1C82021900FBB7C5 /* Products */,
+				A0041F351C8F1B23006A16B0 /* hull.in */,
+				A0041F361C8F1B23006A16B0 /* hull.out */,
 			);
 			sourceTree = "<group>";
 		};
@@ -251,6 +255,7 @@
 				A0730CB61C82021900FBB7C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

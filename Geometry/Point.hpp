@@ -93,7 +93,13 @@ public:
     void abs(T _x){x = _x;}
     void ord(T _y){y = _y;}
     
-    Point& operator=(const Point&);
+    Point& operator=(const Point& p)
+    {
+        x = p.abs();
+        y = p.ord();
+        return *this;
+    }
+    
     template<class X> Point& operator= (const Point<X>& p)
     {
         x = p.abs();
@@ -183,7 +189,13 @@ public:
     void abs(double _x){x = _x;}
     void ord(double _y){y = _y;}
     
-    Point& operator=(const Point&);
+    Point& operator=(const Point& p)
+    {
+        x = p.abs();
+        y = p.ord();
+        return *this;
+    }
+    
     template<class X> Point& operator= (const Point<X>& p)
     {
         x = p.abs();
